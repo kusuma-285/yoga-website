@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yoga Pose Classification</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f7f3fb;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #5b2388, #7b2cbf);
+      color: white;
+      padding: 55px 8%;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      max-width: 850px;
+      margin: auto;
+      font-size: 1.05rem;
+    }
+
+    .authors {
+      margin-top: 18px;
+      font-weight: bold;
+    }
+
+    nav {
+      background: white;
+      padding: 14px 8%;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #5b2388;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 50px 8%;
+    }
+
+    .section-title {
+      color: #5b2388;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      border-left: 6px solid #7b2cbf;
+      padding-left: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .card h3 {
+      color: #6a1b9a;
+      margin-bottom: 12px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .image-box {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .image-box img {
+      width: 100%;
+      max-width: 950px;
+      border-radius: 12px;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .highlight {
+      background: #efe2ff;
+      border-left: 5px solid #7b2cbf;
+      padding: 18px;
+      border-radius: 12px;
+      margin-top: 18px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .metric-box {
+      background: white;
+      border-radius: 14px;
+      padding: 22px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    .metric-box h3 {
+      color: #7b2cbf;
+      font-size: 2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    th, td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background: #6a1b9a;
+      color: white;
+    }
+
+    .cta {
+      background: #5b2388;
+      color: white;
+      text-align: center;
+      padding: 45px 8%;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #24102f;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 700px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Yoga Pose Classification using CNN and SVD-Based Methods</h1>
+    <p>
+      A machine learning project comparing deep learning and classical methods for classifying yoga poses from image data.
+    </p>
+    <div class="authors">
+      Kusuma Miriyala • Sai Kiran Pesam • Hany Elgala<br>
+      University at Albany, State University of New York
+    </div>
+  </header>
+
+  <nav>
+    <a href="#intro">Introduction</a>
+    <a href="#approach">Approach</a>
+    <a href="#analysis">Analysis</a>
+    <a href="#results">Results</a>
+    <a href="#conclusion">Conclusion</a>
+  </nav>
+
+  <section id="intro">
+    <h2 class="section-title">Introduction</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Project Goal</h3>
+        <p>
+          The goal of this project is to classify yoga pose images into different pose categories using machine learning.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Why It Matters</h3>
+        <p>
+          Yoga pose classification can be used in fitness apps, virtual trainers, healthcare, and posture correction systems.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Methods Compared</h3>
+        <ul>
+          <li>CNN deep learning model</li>
+          <li>SVD + KNN classical method</li>
+          <li>Performance compared using accuracy, precision, recall, and F1-score</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="approach">
+    <h2 class="section-title">Approach</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Preprocessing</h3>
+        <ul>
+          <li>Images resized to 128 × 128 pixels</li>
+          <li>Pixel values normalized between 0 and 1</li>
+          <li>CNN used RGB images</li>
+          <li>SVD used grayscale flattened images</li>
+          <li>Data augmentation used for CNN</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>CNN Model</h3>
+        <ul>
+          <li>Input: 128 × 128 × 3 image</li>
+          <li>Convolution layers extract visual features</li>
+          <li>MaxPooling reduces computation</li>
+          <li>Batch Normalization improves stability</li>
+          <li>Dropout helps reduce overfitting</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>SVD + KNN Model</h3>
+        <ul>
+          <li>Images converted to grayscale</li>
+          <li>Images flattened into feature vectors</li>
+          <li>SVD used for dimensionality reduction</li>
+          <li>Top components selected</li>
+          <li>KNN used for final classification</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="analysis">
+    <h2 class="section-title">Analysis</h2>
+
+    <div class="image-box">
+      <img src="comparison.png" alt="CNN vs SVD KNN performance comparison">
+      <p class="caption">
+        Performance comparison between CNN and SVD+KNN across accuracy, precision, recall, and F1-score.
+      </p>
+    </div>
+
+    <div class="card">
+      <p>
+        The comparison shows that CNN performs better than SVD+KNN because CNN can learn spatial and hierarchical image features directly from the yoga pose images.
+      </p>
+
+      <div class="highlight">
+        The CNN model achieved around <strong>86% accuracy</strong>, showing stronger performance than the SVD-based method.
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric-box">
+        <h3>86%</h3>
+        <p>CNN Accuracy</p>
+      </div>
+
+      <div class="metric-box">
+        <h3>30</h3>
+        <p>Best SVD Components</p>
+      </div>
+
+      <div class="metric-box">
+        <h3>5</h3>
+        <p>Yoga Pose Classes</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="results">
+    <h2 class="section-title">Results</h2>
+
+    <div class="image-box">
+      <img src="predictions.png" alt="Yoga pose model predictions">
+      <p class="caption">
+        CNN sample predictions. Green labels show correct predictions and red labels show incorrect predictions.
+      </p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Strength</th>
+          <th>Limitation</th>
+          <th>Overall Result</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>CNN</td>
+          <td>Captures complex visual and spatial features</td>
+          <td>Requires more training time and computation</td>
+          <td>Best overall performance</td>
+        </tr>
+
+        <tr>
+          <td>SVD + KNN</td>
+          <td>Simple, fast, and interpretable</td>
+          <td>Loses spatial information after flattening</td>
+          <td>Lower performance than CNN</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight">
+      CNN correctly classifies many poses such as downdog, plank, and warrior2. Some errors occur between visually similar poses.
+    </div>
+  </section>
+
+  <section id="conclusion">
+    <h2 class="section-title">Conclusion</h2>
+
+    <div class="card">
+      <p>
+        This project demonstrates that CNN is more effective than SVD+KNN for yoga pose classification. While SVD is useful for dimensionality reduction, CNN performs better because it learns important image features directly from the data.
+      </p>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>Final Takeaway</h2>
+    <p>CNN is the better approach for image-based yoga pose classification.</p>
+  </div>
+
+  <footer>
+    Yoga Pose Classification Project • University at Albany
+  </footer>
+
+</body>
+</html>

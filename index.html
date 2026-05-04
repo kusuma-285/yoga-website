@@ -76,6 +76,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 24px;
+      margin-bottom: 28px;
     }
 
     .card {
@@ -150,6 +151,7 @@
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      margin-top: 20px;
     }
 
     th, td {
@@ -219,7 +221,7 @@
       <div class="card">
         <h3>Project Goal</h3>
         <p>
-          The goal of this project is to classify yoga pose images into different pose categories using machine learning.
+          The goal of this project is to classify yoga pose images into five pose categories using machine learning.
         </p>
       </div>
 
@@ -238,6 +240,13 @@
           <li>Performance compared using accuracy, precision, recall, and F1-score</li>
         </ul>
       </div>
+    </div>
+
+    <div class="image-box">
+      <img src="dataset.png" alt="Dataset samples and class distribution">
+      <p class="caption">
+        Sample images from each yoga pose class and training set class distribution.
+      </p>
     </div>
   </section>
 
@@ -290,30 +299,37 @@
       </p>
     </div>
 
+    <div class="image-box">
+      <img src="accuracy_text.png" alt="Final accuracy comparison">
+      <p class="caption">
+        Final model comparison showing CNN accuracy, SVD+KNN accuracy, best model, and accuracy gap.
+      </p>
+    </div>
+
     <div class="card">
       <p>
-        The comparison shows that CNN performs better than SVD+KNN because CNN can learn spatial and hierarchical image features directly from the yoga pose images.
+        The comparison shows that CNN performs better than SVD+KNN because CNN can learn spatial and hierarchical image features directly from yoga pose images.
       </p>
 
       <div class="highlight">
-        The CNN model achieved around <strong>86% accuracy</strong>, showing stronger performance than the SVD-based method.
+        The CNN model achieved around <strong>80.85% accuracy</strong>, while SVD+KNN achieved around <strong>58.51% accuracy</strong>.
       </div>
     </div>
 
     <div class="metrics">
       <div class="metric-box">
-        <h3>86%</h3>
+        <h3>80.85%</h3>
         <p>CNN Accuracy</p>
       </div>
 
       <div class="metric-box">
-        <h3>30</h3>
-        <p>Best SVD Components</p>
+        <h3>58.51%</h3>
+        <p>SVD+KNN Accuracy</p>
       </div>
 
       <div class="metric-box">
-        <h3>5</h3>
-        <p>Yoga Pose Classes</p>
+        <h3>22.34%</h3>
+        <p>Accuracy Gap</p>
       </div>
     </div>
   </section>
@@ -325,6 +341,13 @@
       <img src="predictions.png" alt="Yoga pose model predictions">
       <p class="caption">
         CNN sample predictions. Green labels show correct predictions and red labels show incorrect predictions.
+      </p>
+    </div>
+
+    <div class="image-box">
+      <img src="confusion.png" alt="CNN confusion matrix">
+      <p class="caption">
+        CNN confusion matrix showing correct classifications and misclassifications across all five pose classes.
       </p>
     </div>
 
@@ -356,7 +379,7 @@
     </table>
 
     <div class="highlight">
-      CNN correctly classifies many poses such as downdog, plank, and warrior2. Some errors occur between visually similar poses.
+      CNN correctly classifies many poses such as downdog, plank, tree, and warrior2. Some errors occur between visually similar poses, especially goddess and warrior2.
     </div>
   </section>
 
@@ -365,7 +388,7 @@
 
     <div class="card">
       <p>
-        This project demonstrates that CNN is more effective than SVD+KNN for yoga pose classification. While SVD is useful for dimensionality reduction, CNN performs better because it learns important image features directly from the data.
+        This project demonstrates that CNN is more effective than SVD+KNN for yoga pose classification. While SVD is useful for dimensionality reduction and faster computation, CNN performs better because it learns important image features directly from the data.
       </p>
     </div>
   </section>
